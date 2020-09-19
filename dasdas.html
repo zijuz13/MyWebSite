@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Include stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css" type="text/css" rel="stylesheet">
+    <!-- Include the videojs library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.6.2/video.min.js"></script>
+    <script src="./js/vue/vue.js"></script>
+    <!-- videojs JS Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/dist/vue-video-player.js"></script>
+</head>
+<style>
+    .video-js .vjs-big-play-button{
+        margin-left: 270px;
+        margin-right: 320px;
+        margin-top: 160px;
+        margin-bottom: 300px;
+    }
+</style>
+<body>
+<div id="vueapp" style="width:1000px;height:1000px">
+    <div>
+    <fucke v-bind:url="url" :poster="poster"></fucke>
+    </div>
+    <button @click="url='http://images.huajun123.com/movie1.mp4'">点击改变1</button>
+    <button @click="url=''">点击改变2</button>
+</div>
+</body>
+<script src="js/components/videocomponent.js"></script>
+<script type="text/javascript">
+    const app=new Vue({
+        el: '#vueapp',
+        data:{
+            url:'http://images.huajun123.com/movie1.mp4',
+            poster:'http://images.huajun123.com/about.png'
+        },
+        methods: {
+        },
+        components:{
+            fucke
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,34 @@
+.video-card-common {
+    width: 206px;
+    cursor: pointer;
+}
+.video-card-common .card-pic {
+    position: relative;
+    width: 100%;
+    height: 116px;
+}
+.video-card-common .card-pic a img {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+.video-card-common .card-pic a .count {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 6px 8px;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #fff;
+    line-height: 16px;
+}
+.bili-icon_shipin_bofangshu:before {
+    content: "\E73E";
+}
+.bili-icon_shipin_dianzanshu:before {
+    content: "\E740";
+}
+.fucker{
+    width:300px;
+    height:300px;
+}
