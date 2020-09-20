@@ -12,16 +12,16 @@
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
-    <link href="./css/vuetify.min.css" rel="stylesheet">
     <!--    引入vue2.0框架-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="./js/vue/vue.js"></script>
     <script src="./js/axios.min.js"></script>
     <script src="./js/common.js"></script>
-<!--    Element-UI framework-->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<!--    Element-UI framework-->
 </head>
 <body>
+<div id="app">
 <!-- header -->
 <header>
   <div class="w3l-header" id="home">
@@ -132,6 +132,48 @@
 <!-- //services block1 -->
 
 <!-- services block 2 -->
+<div class="w3l-services-block py-5" id="classes">
+    <div style="text-align: center">
+    <el-input v-model="search" placeholder="请输入项目名或项目技术栈关键词" style="width: 300px"></el-input>
+        <el-button type="success" plain>搜索</el-button>
+    </div>
+    <div class="container py-lg-5 py-md-3">
+        <div class="services-block_grids_bottom">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 service_grid_btm_left">
+                    <div class="service_grid_btm_left1">
+                        <div class="service_grid_btm_left2">
+                            <span class="fa fa-desktop editContent" aria-hidden="true"></span>
+                            <h5>web development</h5>
+                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+                        </div>
+                        <img src="assets/images/1.jpg" alt=" " class="img-fluid" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-md-0 mt-sm-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <div class="service_grid_btm_left2">
+                            <span class="fa fa-camera-retro editContent" aria-hidden="true"></span>
+                            <h5>Photography</h5>
+                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+                        </div>
+                        <img src="assets/images/2.jpg" alt=" " class="img-fluid" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-0 mt-sm-5 mt-4">
+                    <div class="service_grid_btm_left1">
+                        <div class="service_grid_btm_left2">
+                            <span class="fa fa-apple editContent" aria-hidden="true"></span>
+                            <h5>Apps development</h5>
+                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+                        </div>
+                        <img src="assets/images/3.jpg" alt=" " class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="w3l-services-block py-5" id="classes">
     <div class="container py-lg-5 py-md-3">
         <div class="services-block_grids_bottom">
@@ -315,6 +357,7 @@
 <button onclick="topFunction()" id="movetop" class="editContent" title="Go to top">
   <span class="fa fa-angle-up"></span>
 </button>
+</div>
 <script>
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () {
@@ -389,7 +432,7 @@
 const app=new Vue({
     el:'#app',
     data:{
-        fucker:'hujkc123'
+        search:''
     },
     components:{
 
