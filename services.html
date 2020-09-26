@@ -374,7 +374,15 @@
 const app=new Vue({
     el:'#app',
     data:{
-        search:''
+        search:{
+            name:'',
+            filter:{}
+        },
+        items:[], //所有的搜索结果集
+        specs:{}  //所有的聚合参数集合
+    },
+    created(){
+
     },
     components:{
 
