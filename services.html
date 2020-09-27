@@ -134,12 +134,12 @@
 <!-- services block 2 -->
 <div class="w3l-services-block py-5" id="classes">
     <div style="text-align: center">
-    <el-input v-model="searchname" @keypress.native.enter="searchData" placeholder="请输入项目名或项目技术栈关键词" style="width: 300px"></el-input>
+    <el-input v-model="searchname" @keypress.native.enter="searchData" placeholder="Powered By Elasticsearch" style="width: 300px"></el-input>
         <el-button type="success" @click="searchData" plain>搜索</el-button>
     </div>
     <div class="container py-lg-5 py-md-3">
         <div class="services-block_grids_bottom">
-            <div class="row">
+            <div class="row" v-loading="loading">
                 <div v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">
                     <div class="service_grid_btm_left1">
                         <div class="service_grid_btm_left2">
@@ -376,6 +376,7 @@
 const app=new Vue({
     el:'#app',
     data:{
+        loading:true,
         search:{
             name:'',
             filter:{}
@@ -397,6 +398,7 @@ this.getDataFromServer();
         search:{
            deep:true,
             handler(){
+               this.loading=true;
                this.getDataFromServer()
             }
         }
@@ -409,10 +411,17 @@ this.getDataFromServer();
             })
          this.items=data.items;
          this.specs=data.specs;
+         let that=this;
+         setTimeout( function(){
+             that.closeLoading();
+         }, 2000 )
         })
     },
         searchData(){
         this.search.name=this.searchname;
+        },
+        closeLoading(){
+        this.loading=false;
         }
     }
 })
