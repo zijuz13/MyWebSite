@@ -134,20 +134,22 @@
 <!-- services block 2 -->
 <div class="w3l-services-block py-5" id="classes">
     <div style="text-align: center">
-    <el-input v-model="search" placeholder="请输入项目名或项目技术栈关键词" style="width: 300px"></el-input>
-        <el-button type="success" plain>搜索</el-button>
+    <el-input v-model="searchname" @keypress.native.enter="searchData" placeholder="请输入项目名或项目技术栈关键词" style="width: 300px"></el-input>
+        <el-button type="success" @click="searchData" plain>搜索</el-button>
     </div>
     <div class="container py-lg-5 py-md-3">
         <div class="services-block_grids_bottom">
             <div class="row">
-                <div v-for="i in 10" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="3>=i?'':'margin-top: 130px'">
+                <div v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">
                     <div class="service_grid_btm_left1">
                         <div class="service_grid_btm_left2">
-                            <span class="fa fa-desktop editContent" aria-hidden="true"></span>
-                            <h5>电影管理系统</h5>
-                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+                            <span style="margin-top: 20px" class="fa fa-desktop editContent" aria-hidden="true"></span>
+                            <h5>{{item.name}}</h5>
+                            <img :src="item.image" style="margin-bottom: 20px" alt=" " class="img-fluid" />
+                            <div v-for="(d,index) in item.description" :key="index" style="text-align: justify">
+                                <h8 style="font-weight: bold">{{(index+1)+'.'}}</h8>{{d}}
+                            </div>
                         </div>
-                        <img src="http://images.huajun123.com/movie.jpg" alt=" " class="img-fluid" />
                     </div>
                 </div>
             </div>
@@ -378,11 +380,12 @@ const app=new Vue({
             name:'',
             filter:{}
         },
+        searchname:'',
         items:[], //所有的搜索结果集
         specs:{}  //所有的聚合参数集合
     },
     created(){
-
+this.getDataFromServer();
     },
     components:{
 
@@ -390,8 +393,27 @@ const app=new Vue({
     computed:{
 
     },
+    watch:{
+        search:{
+           deep:true,
+            handler(){
+               this.getDataFromServer()
+            }
+        }
+    },
     methods:{
-
+    getDataFromServer(){
+        huajun.http.post('http://localhost:10010/api/search/projects/all',this.search).then(({data})=>{
+            data.items.forEach(item=>{
+                item.description=item.description.split("\\");
+            })
+         this.items=data.items;
+         this.specs=data.specs;
+        })
+    },
+        searchData(){
+        this.search.name=this.searchname;
+        }
     }
 })
 </script>
