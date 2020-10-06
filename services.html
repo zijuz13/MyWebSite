@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>My Projects & Industry Experiences</title>
-
+    <link href="https://cdn.jsdelivr.net/npm/video.js@6.6.2/dist/video-js.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/src/custom-theme.css" type="text/css" rel="stylesheet">
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 
@@ -47,6 +48,9 @@
             <li class="nav-item active mr-lg-4">
               <a class="nav-link pl-0 pr-0" href="services.html">Services</a>
             </li>
+              <li class="nav-item mr-lg-4">
+                  <a class="nav-link pl-0 pr-0" href="electionnews.html">Election News</a>
+              </li>
             <li class="nav-item">
               <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>
             </li>
@@ -140,7 +144,7 @@
     <div class="container py-lg-5 py-md-3">
         <div class="services-block_grids_bottom">
             <div class="row" v-loading="loading">
-                <div v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">
+                <div @click="displayVideo(item)" v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">
                     <div class="service_grid_btm_left1">
                         <div class="service_grid_btm_left2">
                             <span style="margin-top: 20px" class="fa fa-desktop editContent" aria-hidden="true"></span>
@@ -203,7 +207,19 @@
     </div>
 </div>
 <!-- //services block3 -->
-
+    <el-dialog
+            :title="project.name"
+            :visible.sync="centerDialogVisible"
+            width="50%"
+            center>
+        <div>
+            <fucker v-bind:url="project.video" :poster="project.image"></fucker>
+        </div>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="centerDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+  </span>
+    </el-dialog>
 <!-- services block4 -->
 <div class="w3l-services py-5">
     <div class="container principles-grids principles-grids1 py-lg-3">
@@ -372,6 +388,9 @@
 <script>
   $('.counter').countUp();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.6.2/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/dist/vue-video-player.js"></script>
+<script src="js/components/videocomponent.js"></script>
 <script type="text/javascript">
 const app=new Vue({
     el:'#app',
@@ -381,7 +400,10 @@ const app=new Vue({
             name:'',
             filter:{}
         },
+        project:{
+        },
         searchname:'',
+        centerDialogVisible:false,
         items:[], //所有的搜索结果集
         specs:{}  //所有的聚合参数集合
     },
@@ -389,7 +411,7 @@ const app=new Vue({
 this.getDataFromServer();
     },
     components:{
-
+        fucker:fucke
     },
     computed:{
 
@@ -422,6 +444,11 @@ this.getDataFromServer();
         },
         closeLoading(){
         this.loading=false;
+        },
+        displayVideo(project){
+        this.project={};
+        this.centerDialogVisible=true;
+        this.project=project;
         }
     }
 })
