@@ -9,8 +9,9 @@
 
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="./js/css/fucker.css">
   <!-- Template CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
   <link rel="stylesheet" href="assets/css/style-starter.css">
     <link href="./css/vuetify.min.css" rel="stylesheet">
     <!--    引入vue2.0框架-->
@@ -18,16 +19,16 @@
     <script src="./js/axios.min.js"></script>
     <script src="./js/common.js"></script>
 <!--    Element-UI framework-->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 <!-- header -->
+<div id="app">
 <header>
   <div class="w3l-header" id="home">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark pl-0 pr-0">
-        <a class="navbar-brand m-0" href="index.html"><span class="fa fa-gamepad"></span> Eccentric </a>
+        <a class="navbar-brand m-0" href="index.html"><span class="fa fa-gamepad"></span> Huajun </a>
         <!-- if logo is image enable this   
             <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -64,18 +65,16 @@
 <div class="w3-services py-5" id="services">
     <div class="container py-lg-3">
         <div class="title-section">
-            <h3 class="main-title-w3">My Services</h3>
+            <h3 class="main-title-w3">Keep You Acquainted With The World</h3>
             <div class="title-line">
             </div>
         </div>
         <div class="row w3-services-grids mt-lg-5 mt-4">
             <div class="col-lg-5 w3-services-left-grid">
-                <h4>What i do</h4>
-                <p>Lorem ipsum dolor sit amet, init sed adipisci ngelit. In a et euismod faucibus quam, a sodales er
-                    osplacerat vitae. Sed pretium fermentum luctus.Cras sodales nisl vitae dolor facilisis dapibus.
-                    Integer consectetur in velit eget viverra. Quisque vulputate a nisi blandit molestie. Aenean sit
-                    amet consequat risus, eget egestas est.Nullam eu turpis diam. Ut ac erat vestibulum, laoreet ex
-                    faucibus, iaculis ex. Donec at dolor volutpat, laoreet nisi. </p>
+                <h4>美国最新新闻(Real News)</h4>
+                <p>这部分的功能是通过来自西雅图的云服务器使用Quartz根据CRON表达式以及RabbitMQ等定时爬取最新的大选和美国资讯，
+                避免因为各种原因无法得到第一手资讯，技术栈主要是用WebDrive(RemoteDriver)、Docker通过Chrome浏览器定时在CentOS上打开相应
+                的页面进行读取信息以及推送到RabbitMQ中方便随后刷新页面就能看到</p>
                 <div class="more">
                     <a href="#more" class="btn-primary btn btn-style mt-lg-5 mt-4">Know more</a>
                 </div>
@@ -139,41 +138,105 @@
 
 <!-- services block 2 -->
 <div class="w3l-services-block py-5" id="classes">
+    <h3 style="font-size: 45px;line-height: 50px;font-weight: 700;color: #0b2e13;text-align: center;align-content: center">Joe Biden最新领先追踪(The Lead For Joe Biden Tracker)</h3>
     <div class="container py-lg-5 py-md-3">
-        <div class="services-block_grids_bottom">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 service_grid_btm_left">
-                    <div class="service_grid_btm_left1">
-                        <div class="service_grid_btm_left2">
-                            <span class="fa fa-desktop editContent" aria-hidden="true"></span>
-                            <h5>web development</h5>
-                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+<!--        <div class="services-block_grids_bottom">-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-4 col-md-6 service_grid_btm_left">-->
+<!--                    <div class="service_grid_btm_left1">-->
+<!--                        <div class="service_grid_btm_left2">-->
+<!--                            <span class="fa fa-desktop editContent" aria-hidden="true"></span>-->
+<!--                            <h5>web development</h5>-->
+<!--                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>-->
+<!--                        </div>-->
+<!--                        <img src="assets/images/1.jpg" alt=" " class="img-fluid" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-md-0 mt-sm-5 mt-4">-->
+<!--                    <div class="service_grid_btm_left1">-->
+<!--                        <div class="service_grid_btm_left2">-->
+<!--                            <span class="fa fa-camera-retro editContent" aria-hidden="true"></span>-->
+<!--                            <h5>Photography</h5>-->
+<!--                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>-->
+<!--                        </div>-->
+<!--                        <img src="assets/images/2.jpg" alt=" " class="img-fluid" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-0 mt-sm-5 mt-4">-->
+<!--                    <div class="service_grid_btm_left1">-->
+<!--                        <div class="service_grid_btm_left2">-->
+<!--                            <span class="fa fa-apple editContent" aria-hidden="true"></span>-->
+<!--                            <h5>Apps development</h5>-->
+<!--                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>-->
+<!--                        </div>-->
+<!--                        <img src="assets/images/3.jpg" alt=" " class="img-fluid" />-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+        <transition name="el-fade-in-linear">
+            <el-row  type="flex"  v-loading="show" justify="center">
+                <el-col style="margin-right: 300px">
+                    <el-card :body-style="{ padding: '0px'}" style="width: 333px" shadow="hover">
+                        <img src="http://images.huajun123.com/Joe_Biden.jpg" class="image">
+                        <div style="padding: 14px;">
+                            <div style="text-align: center;justify-content: center;align-content: center;align-items: center">The President Of the United States</div>
+                            <div style="text-align: center;justify-content: center;align-content: center;align-items: center;font-weight: bold">Joe Biden</div>
+                            <div class="bottom clearfix">
+                                <time class="time"></time>
+                                <el-popover
+                                        ref="popfuck"
+                                        placement="right"
+                                        title="Predictit赌盘"
+                                        width="200"
+                                        trigger="hover"
+                                        content="Joe Biden 68, Trump 30">
+                                </el-popover>
+                                <div style="margin-top: 50px;display: flex;justify-content: space-around">
+                                <el-dropdown>
+                                    <el-button type="primary">Betting Odds</el-button>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item v-popover:popfuck>Predictit</el-dropdown-item>
+                                        <el-dropdown-item>Smarkets</el-dropdown-item>
+                                        <el-dropdown-item>Betfair</el-dropdown-item>
+                                        <el-dropdown-item disabled>Bovada</el-dropdown-item>
+                                        <el-dropdown-item divided>Bwin</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                <el-dropdown>
+                                    <el-button type="success" >National Polls</el-button>
+                                    <el-popover
+                                            ref="popover"
+                                            placement="right"
+                                            title="标题"
+                                            width="200"
+                                            trigger="hover"
+                                            content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
+                                    </el-popover>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item v-popover:popover>CNN</el-dropdown-item>
+                                        <el-dropdown-item>Fox News</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                                </div>
+                            </div>
                         </div>
-                        <img src="assets/images/1.jpg" alt=" " class="img-fluid" />
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-md-0 mt-sm-5 mt-4">
-                    <div class="service_grid_btm_left1">
-                        <div class="service_grid_btm_left2">
-                            <span class="fa fa-camera-retro editContent" aria-hidden="true"></span>
-                            <h5>Photography</h5>
-                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
+                    </el-card>
+                </el-col>
+                <el-col>
+                    <el-card :body-style="{ padding: '0px'}" style="width: 333px" shadow="hover">
+                        <img src="http://images.huajun123.com/Fuck_Trump.jpg" class="image">
+                        <div style="padding: 14px;">
+                            <span>Fucked Person</span>
+                            <div class="bottom clearfix">
+                                <time class="time"></time>
+                                <el-button type="warning" style="margin-top: 50px">Fuck</el-button>
+                            </div>
                         </div>
-                        <img src="assets/images/2.jpg" alt=" " class="img-fluid" />
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 service_grid_btm_left mt-lg-0 mt-sm-5 mt-4">
-                    <div class="service_grid_btm_left1">
-                        <div class="service_grid_btm_left2">
-                            <span class="fa fa-apple editContent" aria-hidden="true"></span>
-                            <h5>Apps development</h5>
-                            <p>Maecenas sodales eu velit in varius. vitae sem vitae urna tempus commodo.</p>
-                        </div>
-                        <img src="assets/images/3.jpg" alt=" " class="img-fluid" />
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </el-card>
+                </el-col>
+            </el-row>
+        </transition>
     </div>
 </div>
 <!-- // services block2 -->
@@ -321,6 +384,7 @@
 <button onclick="topFunction()" id="movetop" class="editContent" title="Go to top">
   <span class="fa fa-angle-up"></span>
 </button>
+</div>
 <script>
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () {
@@ -395,7 +459,13 @@
 const app=new Vue({
     el:'#app',
     data:{
-        fucker:'hujkc123'
+        show:true
+    },
+    created(){
+        let that=this;
+        setTimeout( function(){
+            that.show=false;
+        }, 2000 )
     },
     components:{
 
