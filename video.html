@@ -58,7 +58,9 @@
 </style>
 <body>
 <div id="app">
-    <el-row  type="flex">
+    <el-button @click="show=!show"></el-button>
+    <transition name="el-fade-in-linear">
+    <el-row  type="flex" v-loading="show">
         <el-col v-for="i in 3" :key="i">
         <el-card :body-style="{ padding: '0px'}" style="width: 360px" shadow="hover">
         <img v-if="2==i" src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
@@ -73,6 +75,7 @@
     </el-card>
         </el-col>
     </el-row>
+    </transition>
 </div>
 </div>
 </body>
@@ -85,6 +88,7 @@
             }
         },
         data:{
+            show:'true'
         },
         computed:{
 

@@ -22,10 +22,10 @@
 </style>
 <body>
 <div id="vueapp" style="width:1000px;height:1000px">
-    <div>
-    <fucke v-bind:url="url" :poster="poster"></fucke>
+    <div v-if="show">
+    <fucke v-bind:url="url" :poster="poster" ></fucke>
     </div>
-    <button @click="url='http://images.huajun123.com/movie1.mp4'">点击改变1</button>
+    <button @click="show=false;url='http://images.huajun123.com/movie.mp4';show=true">点击改变1</button>
     <button @click="url=''">点击改变2</button>
 </div>
 </body>
@@ -35,7 +35,8 @@
         el: '#vueapp',
         data:{
             url:'http://images.huajun123.com/movie1.mp4',
-            poster:'http://images.huajun123.com/about.png'
+            poster:'http://images.huajun123.com/about.png',
+            show:true
         },
         methods: {
         },

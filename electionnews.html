@@ -51,6 +51,9 @@
               <li class="nav-item active mr-lg-4">
                   <a class="nav-link pl-0 pr-0" href="services.html">Election News</a>
               </li>
+              <li class="nav-item mr-lg-4">
+                  <a class="nav-link pl-0 pr-0" href="services.html">Technology&Blog</a>
+              </li>
             <li class="nav-item">
               <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>
             </li>
@@ -74,7 +77,7 @@
                 <h4>美国最新新闻(Real News)</h4>
                 <p>这部分的功能是通过来自西雅图的云服务器使用Quartz根据CRON表达式以及RabbitMQ等定时爬取最新的大选和美国资讯，
                 避免因为各种原因无法得到第一手资讯，技术栈主要是用WebDrive(RemoteDriver)、Docker通过Chrome浏览器定时在CentOS上打开相应
-                的页面进行读取信息以及推送到RabbitMQ中方便随后刷新页面就能看到</p>
+                的页面进行读取信息以及推送到RabbitMQ中方便随后刷新页面就能看到，使用Docker-redis-standalone加快响应速度</p>
                 <div class="more">
                     <a href="#more" class="btn-primary btn btn-style mt-lg-5 mt-4">Know more</a>
                 </div>
@@ -184,40 +187,35 @@
                             <div style="text-align: center;justify-content: center;align-content: center;align-items: center;font-weight: bold">Joe Biden</div>
                             <div class="bottom clearfix">
                                 <time class="time"></time>
-                                <el-popover
-                                        ref="popfuck"
-                                        placement="right"
-                                        title="Predictit赌盘"
-                                        width="200"
-                                        trigger="hover"
-                                        content="Joe Biden 68, Trump 30">
-                                </el-popover>
                                 <div style="margin-top: 50px;display: flex;justify-content: space-around">
-                                <el-dropdown>
-                                    <el-button type="primary">Betting Odds</el-button>
-                                    <el-dropdown-menu slot="dropdown">
-                                        <el-dropdown-item v-popover:popfuck>Predictit</el-dropdown-item>
-                                        <el-dropdown-item>Smarkets</el-dropdown-item>
-                                        <el-dropdown-item>Betfair</el-dropdown-item>
-                                        <el-dropdown-item disabled>Bovada</el-dropdown-item>
-                                        <el-dropdown-item divided>Bwin</el-dropdown-item>
-                                    </el-dropdown-menu>
-                                </el-dropdown>
-                                <el-dropdown>
-                                    <el-button type="success" >National Polls</el-button>
-                                    <el-popover
-                                            ref="popover"
-                                            placement="right"
-                                            title="标题"
-                                            width="200"
-                                            trigger="hover"
-                                            content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。">
-                                    </el-popover>
-                                    <el-dropdown-menu slot="dropdown">
-                                        <el-dropdown-item v-popover:popover>CNN</el-dropdown-item>
-                                        <el-dropdown-item>Fox News</el-dropdown-item>
-                                    </el-dropdown-menu>
-                                </el-dropdown>
+                                    <el-dropdown>
+                                        <el-button type="primary">Betting Odds</el-button>
+                                        <el-dropdown-menu>
+                                            <el-popover
+                                                    v-for="(v,k,index) in list[0]['bettingOdds']" :key="index"
+                                                    placement="right"
+                                                    :title="k"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    :content="'Joe Biden的'+k+'赌盘为'+v+'美元'">
+                                                <el-dropdown-item slot="reference">{{k}}</el-dropdown-item>
+                                            </el-popover>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                    <el-dropdown>
+                                        <el-button type="success">National Polls</el-button>
+                                        <el-dropdown-menu>
+                                            <el-popover
+                                                    v-for="(v,k,index) in list[0].nationalPolls" :key="index"
+                                                    placement="right"
+                                                    :title="k+'全美国平均民调'"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    :content="'Joe Biden的全美国平均民调是:'+v+'%'">
+                                                <el-dropdown-item slot="reference">{{k}}</el-dropdown-item>
+                                            </el-popover>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
                                 </div>
                             </div>
                         </div>
@@ -227,10 +225,40 @@
                     <el-card :body-style="{ padding: '0px'}" style="width: 333px" shadow="hover">
                         <img src="http://images.huajun123.com/Fuck_Trump.jpg" class="image">
                         <div style="padding: 14px;">
-                            <span>Fucked Person</span>
+                            <div style="text-align: center;justify-content: center;align-content: center;align-items: center">Fucked Person</div>
+                            <div style="text-align: center;justify-content: center;align-content: center;align-items: center;font-weight: bold">Fuck Trump</div>
                             <div class="bottom clearfix">
                                 <time class="time"></time>
-                                <el-button type="warning" style="margin-top: 50px">Fuck</el-button>
+                                <div style="margin-top: 50px;display: flex;justify-content: space-around">
+                                    <el-dropdown>
+                                        <el-button type="primary">Betting Odds</el-button>
+                                        <el-dropdown-menu>
+                                            <el-popover
+                                                    v-for="(v,k,i) in list[1].bettingOdds" :key="i"
+                                                    placement="right"
+                                                    :title="'傻狗特朗普在'+k+'的Bettings Odds'"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    :content="'在此Market下的赌盘价格:'+v+'美元'">
+                                                <el-dropdown-item slot="reference">{{k}}</el-dropdown-item>
+                                            </el-popover>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                    <el-dropdown>
+                                        <el-button type="success">National Polls</el-button>
+                                        <el-dropdown-menu>
+                                            <el-popover
+                                                    v-for="(v,k,i) in list[1].nationalPolls" :key="i"
+                                                    placement="right"
+                                                    :title="'傻狗在'+k+'上的民调'"
+                                                    width="200"
+                                                    trigger="hover"
+                                                    :content="'在'+k+'下的全国民调是: '+v+'%'">
+                                                <el-dropdown-item slot="reference">{{k}}</el-dropdown-item>
+                                            </el-popover>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                </div>
                             </div>
                         </div>
                     </el-card>
@@ -459,13 +487,20 @@
 const app=new Vue({
     el:'#app',
     data:{
-        show:true
+        show:true,
+        list:[
+            {
+                'bettingOdds':undefined,
+                'nationalPolls':undefined
+            },
+            {
+                'bettingOdds':undefined,
+                'nationalPolls':undefined
+            }
+        ]
     },
     created(){
-        let that=this;
-        setTimeout( function(){
-            that.show=false;
-        }, 2000 )
+   this.getDataFromServer();
     },
     components:{
 
@@ -474,7 +509,23 @@ const app=new Vue({
 
     },
     methods:{
-
+     getDataFromServer(){
+         huajun.http("http://localhost:10010/api/pull/data")
+             .then(({data})=>{
+                 this.list=data;
+                 let that=this;
+                 setTimeout( function(){
+                     that.show=false;
+                 }, 2000 )
+             }).catch(()=>{
+                 console.log('we have entered the uncharted territory now.')
+             let that=this;
+             setTimeout( function(){
+                 console.log("after 16 secs")
+                 that.getDataFromServer();
+             }, 16000 )
+         })
+     }
     }
 })
 </script>

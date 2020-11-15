@@ -10880,6 +10880,7 @@ span.sicon {
 
 .service_grid_btm_left1 {
   transition: all 300ms ease-in-out;
+  height:666px;
   z-index: 1;
   width: 100%;
   overflow: hidden;
@@ -10931,8 +10932,9 @@ span.sicon {
   margin: 0; }
 
 .service_grid_btm_left2 {
-  padding: 2em 1em;
+  padding: 2em 1em
   border: none;
+  height:666px;
   background: #fff;
   text-align: center;
   border-top-left-radius: 8px;
