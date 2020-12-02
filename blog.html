@@ -15,6 +15,13 @@ TemplateMo 553 Xtra Blog
 https://templatemo.com/tm-553-xtra-blog
 
 -->
+    <link href="./css/vuetify.min.css" rel="stylesheet">
+    <!--    引入vue2.0框架-->
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/common.js"></script>
+    <!--    Element-UI framework-->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 	<header class="tm-header" id="tm-header">
@@ -65,7 +72,7 @@ https://templatemo.com/tm-553-xtra-blog
             </p>
         </div>
     </header>
-    <div class="container-fluid">
+    <div class="container-fluid" id="app">
         <main class="tm-main">
             <!-- Search form -->
             <div class="row tm-row">
@@ -251,6 +258,14 @@ https://templatemo.com/tm-553-xtra-blog
             </footer>
         </main>
     </div>
+    <script type="text/javascript">
+        const app=new Vue({
+            el:'#app',
+            data:{
+                name:'test'
+            }
+        })
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/templatemo-script.js"></script>
 </body>
