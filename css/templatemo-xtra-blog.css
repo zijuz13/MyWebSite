@@ -299,6 +299,12 @@ ul {
     cursor: not-allowed;
 }
 
+.fucker{
+    background-color: #F0F0F0;
+    color: #999;
+    cursor: not-allowed;
+}
+
 .tm-external-link { color: #0CC; }
 .tm-external-link:hover { color: #09b6b6; }
 

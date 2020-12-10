@@ -8,20 +8,22 @@
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
-<!--
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!--
     
 TemplateMo 553 Xtra Blog
 
 https://templatemo.com/tm-553-xtra-blog
 
 -->
-    <link href="./css/vuetify.min.css" rel="stylesheet">
+<!--    <link href="./css/vuetify.min.css" rel="stylesheet">-->
     <!--    引入vue2.0框架-->
     <script src="./js/vue/vue.js"></script>
     <script src="./js/axios.min.js"></script>
     <script src="./js/common.js"></script>
     <!--    Element-UI framework-->
-    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.14.1/lib/index.js"></script>
 </head>
 <body>
 	<header class="tm-header" id="tm-header">
@@ -31,7 +33,7 @@ https://templatemo.com/tm-553-xtra-blog
             </button>
             <div class="tm-site-header">
                 <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
-                <h1 class="text-center">Technical Blogs And America News</h1>
+                <h1 class="text-center">Welcome to Zijun Zhou's Blogs</h1>
             </div>
             <nav class="tm-nav" id="tm-nav">            
                 <ul>
@@ -77,18 +79,30 @@ https://templatemo.com/tm-553-xtra-blog
             <!-- Search form -->
             <div class="row tm-row">
                 <div class="col-12">
-                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
-                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
-                        <button class="tm-search-button" type="submit">
+                    <div class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" v-model="title" type="text" placeholder="Search by Title(Powered By Elasticsearch)" aria-label="Search" @keyup.enter="fetchData">
+                        <input type="hidden"/>
+                        <button class="tm-search-button" @click="fetchData" type="submit">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
-                        </button>                                
-                    </form>
+                        </button>
+                    </div>
                 </div>                
-            </div>            
+            </div>
+            <div>
+                <div class="tm-post-sidebar" style="float:right">
+                    <hr class="mb-3 tm-hr-primary">
+                    <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>
+                    <ul class="tm-mb-75 pl-5 tm-category-list">
+                        <li v-for="(v,k,i) in aggs" :key="i"><a @click="" class="tm-color-primary">{{k+'('+v+')'}}</a></li>
+                    </ul>
+                    <hr class="mb-3 tm-hr-primary">
+                </div>
+            <transition name="el-fade-in-linear">
+                <el-row v-loading="show">
             <div class="row tm-row">
                 <article v-for="(item,i) in items" :key="i" class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
-                    <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+                    <a :href="'post.html?id='+item.id" class="effect-lily tm-post-link tm-pt-60">
                         <div class="tm-post-link-inner">
                             <img :src="item.image_uri" alt="Image" class="img-fluid">
                         </div>
@@ -99,7 +113,7 @@ https://templatemo.com/tm-553-xtra-blog
                        {{item.content_short}}
                     </p>
                     <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">Travel . Events</span>
+                        <span class="tm-color-primary">{{item.specs.category.join(", ")}}</span>
                         <span class="tm-color-primary">{{huajun.formatDate(Number(item.display_time+''))}}</span>
                     </div>
                     <hr>
@@ -221,38 +235,46 @@ https://templatemo.com/tm-553-xtra-blog
 <!--                    </div>-->
 <!--                </article>-->
             </div>
+                </el-row>
+            </transition>
+            </div>
             <div class="row tm-row tm-mt-100 tm-mb-75">
                 <div class="tm-prev-next-wrapper">
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next disabled tm-mr-20">Prev</a>
-                    <a href="#" class="mb-2 tm-btn tm-btn-primary tm-prev-next">Next</a>
+                    <div class="mb-2 tm-mr-20"></div>
                 </div>
                 <div class="tm-paging-wrapper">
-                    <span class="d-inline-block mr-3">Page</span>
+<!--                    <span class="d-inline-block mr-3">Page</span>-->
                     <nav class="tm-paging-nav d-inline-block">
+                        <el-pagination
+                                :page-size.sync="listQuery.limit"
+                                :current-page.sync="listQuery.page"
+                                :total="total"
+                                layout="total, prev, pager, next, jumper">
+                        </el-pagination>
                         <ul>
-                            <li class="tm-paging-item active">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">1</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>
-                            </li>
-                            <li class="tm-paging-item">
-                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>
-                            </li>
+<!--                            <li class="tm-paging-item active" v-for="i in totalPages" :key="i">-->
+<!--                                <a @click="listQuery.page=i" class="mb-2 tm-btn" :class="{'fucker':listQuery.page===i}">{{i}}</a>-->
+<!--                            </li>-->
+<!--                            <li class="tm-paging-item">-->
+<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>-->
+<!--                            </li>-->
+<!--                            <li class="tm-paging-item">-->
+<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>-->
+<!--                            </li>-->
+<!--                            <li class="tm-paging-item">-->
+<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>-->
+<!--                            </li>-->
                         </ul>
                     </nav>
                 </div>                
-            </div>            
+            </div>
             <footer class="row tm-row">
                 <hr class="col-12">
                 <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">TemplateMo</a>
+                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">Zijun Zhou(周子骏)</a>
                 </div>
                 <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Xtra Blog Company Co. Ltd.
+                    Powered By RabbitMQ, Vue.js, Redis, Elasticsearch, Quartz, Docker in CentOS, Spring Cloud..
                 </div>
             </footer>
         </main>
@@ -267,26 +289,42 @@ https://templatemo.com/tm-553-xtra-blog
                 listQuery:{
                     page:1,
                     limit:6,
-                    title:''
+                    name:''
                 },
                 items:[],
                 totalPages:0,
                 total:0,
-                huajun
+                huajun,
+                title:'',
+                show:true,
+                aggs:{}
             },
             created(){
-                Article.fetchArticle(this.listQuery)
-                .then(({data:{items,totalPages,total}})=>{
-                    console.log(items);
-                    console.log(totalPages);
-                    this.totalPages=totalPages;
-                    this.items=items;
-                    this.total=total;
-                })
+             this.fetchData();
             },
             methods:{
                 formatDate(data){
                     return new Date(Number(data+''));
+                },
+                fetchData(){
+                    this.listQuery['name']=this.title;
+                    this.show=true;
+                    Article.fetchArticle(this.listQuery)
+                        .then(({data:{items,totalPages,total,aggs}})=>{
+                            this.totalPages=totalPages;
+                            this.items=items;
+                            this.total=total;
+                            this.show=false;
+                            this.aggs=aggs;
+                        })
+                }
+            },
+            watch:{
+                listQuery:{
+                    deep:true,
+                    handler(){
+                     this.fetchData();
+                    }
                 }
             }
         })
