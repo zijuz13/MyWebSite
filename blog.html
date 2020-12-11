@@ -43,7 +43,7 @@ https://templatemo.com/tm-553-xtra-blog
                     </a></li>
                     <li class="tm-nav-item"><a href="post.html" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
-                        Content
+                        Projects
                     </a></li>
                     <li class="tm-nav-item"><a href="about.html" class="tm-nav-link">
                         <i class="fas fa-users"></i>
@@ -77,26 +77,15 @@ https://templatemo.com/tm-553-xtra-blog
     <div class="container-fluid" id="app">
         <main class="tm-main">
             <!-- Search form -->
-            <div class="row tm-row">
-                <div class="col-12">
-                    <div class="form-inline tm-mb-80 tm-search-form">
-                        <input class="form-control tm-search-input" v-model="title" type="text" placeholder="Search by Title(Powered By Elasticsearch)" aria-label="Search" @keyup.enter="fetchData">
-                        <input type="hidden"/>
-                        <button class="tm-search-button" @click="fetchData" type="submit">
-                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>                
-            </div>
+            <div style="margin-left: auto">
+            <el-input placeholder="Enter Keywords(Powered By Elasticsearch)--Zijun Zhou" v-model="title" @keyup.enter.native="fetchData" style="margin-bottom: 20px;width:45%" >
+                <el-button @click="fetchData" slot="append" icon="el-icon-search"></el-button>
+            </el-input>
+            <el-row>
+                <el-button plain :type="(onlyIfPresent(k))?'success':'info'" v-for="(v,k,i) in aggs" :key="i" @click="handlerFilter(k)"><font style="color: darkgreen">{{k+'('+ v+')'}}</font></el-button>
+            </el-row>
             <div>
-                <div class="tm-post-sidebar" style="float:right">
-                    <hr class="mb-3 tm-hr-primary">
-                    <h2 class="mb-4 tm-post-title tm-color-primary">Categories</h2>
-                    <ul class="tm-mb-75 pl-5 tm-category-list">
-                        <li v-for="(v,k,i) in aggs" :key="i"><a @click="" class="tm-color-primary">{{k+'('+v+')'}}</a></li>
-                    </ul>
-                    <hr class="mb-3 tm-hr-primary">
-                </div>
+            </div>
             <transition name="el-fade-in-linear">
                 <el-row v-loading="show">
             <div class="row tm-row">
@@ -252,18 +241,6 @@ https://templatemo.com/tm-553-xtra-blog
                                 layout="total, prev, pager, next, jumper">
                         </el-pagination>
                         <ul>
-<!--                            <li class="tm-paging-item active" v-for="i in totalPages" :key="i">-->
-<!--                                <a @click="listQuery.page=i" class="mb-2 tm-btn" :class="{'fucker':listQuery.page===i}">{{i}}</a>-->
-<!--                            </li>-->
-<!--                            <li class="tm-paging-item">-->
-<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">2</a>-->
-<!--                            </li>-->
-<!--                            <li class="tm-paging-item">-->
-<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">3</a>-->
-<!--                            </li>-->
-<!--                            <li class="tm-paging-item">-->
-<!--                                <a href="#" class="mb-2 tm-btn tm-paging-link">4</a>-->
-<!--                            </li>-->
                         </ul>
                     </nav>
                 </div>                
@@ -274,7 +251,7 @@ https://templatemo.com/tm-553-xtra-blog
                     Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">Zijun Zhou(周子骏)</a>
                 </div>
                 <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Powered By RabbitMQ, Vue.js, Redis, Elasticsearch, Quartz, Docker in CentOS, Spring Cloud..
+                    Powered By RabbitMQ, Vue.js, Element UI, Webpack, Vue-cli, SpringBoot, MySQL, Redis, Elasticsearch, Quartz, WebDriver, Docker in CentOS, Spring Cloud, etc.
                 </div>
             </footer>
         </main>
@@ -289,7 +266,10 @@ https://templatemo.com/tm-553-xtra-blog
                 listQuery:{
                     page:1,
                     limit:6,
-                    name:''
+                    name:'',
+                    filter:{
+                        category:[]
+                    }
                 },
                 items:[],
                 totalPages:0,
@@ -307,9 +287,11 @@ https://templatemo.com/tm-553-xtra-blog
                     return new Date(Number(data+''));
                 },
                 fetchData(){
-                    this.listQuery['name']=this.title;
+                    const listQuery=JSON.parse(JSON.stringify(this.listQuery));
+                    listQuery['name']=this.title;
+                    listQuery['filter'].category=this.listQuery.filter.category.join(",");
                     this.show=true;
-                    Article.fetchArticle(this.listQuery)
+                    Article.fetchArticle(listQuery)
                         .then(({data:{items,totalPages,total,aggs}})=>{
                             this.totalPages=totalPages;
                             this.items=items;
@@ -317,6 +299,23 @@ https://templatemo.com/tm-553-xtra-blog
                             this.show=false;
                             this.aggs=aggs;
                         })
+                },
+                handlerFilter(category){
+                    if(this.onlyIfPresent(category)){
+                        const listQuery=Object.assign({},this.listQuery);
+                        listQuery.filter.category=listQuery.filter.category.filter(item=>{
+                            return !(item===category);
+                        })
+                        this.listQuery=listQuery;
+                    }else{
+                        this.listQuery.filter.category.push(category);
+                    }
+                },
+                //返回filter中是否有此元素
+                onlyIfPresent(category){
+                    return this.listQuery['filter'].category.find(item=>{
+                        return item===category;
+                    })!==undefined;
                 }
             },
             watch:{
