@@ -7,7 +7,7 @@ const lyTop = {
             <div class='py-container'> \
                 <div class='yui3-g Logo'> \
                     <div class='yui3-u Left logoArea'> \
-                        <a class='logo-bd' title='乐优' href='index.html' target='_blank'></a> \
+                        <a class='logo-bd' title='乐优' href='web.html' target='_blank'></a> \
                     </div> \
                     <div class='yui3-u Center searchArea'> \
                         <div class='search'> \
@@ -61,7 +61,7 @@ const lyTop = {
                             <li class='f-item'>闪购</li> \
                             <li class='f-item'>团购</li> \
                             <li class='f-item'>有趣</li> \
-                            <li class='f-item'><a href='seckill-index.html' target='_blank'>秒杀</a></li> \
+                            <li class='f-item'><a href='seckill-web.html' target='_blank'>秒杀</a></li> \
                         </ul> \
                     </div> \
                     <div class='yui3-u Right'></div> \
