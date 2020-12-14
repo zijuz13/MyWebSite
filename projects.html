@@ -37,11 +37,11 @@ https://templatemo.com/tm-553-xtra-blog
             </div>
             <nav class="tm-nav" id="tm-nav">            
                 <ul>
-                    <li class="tm-nav-item active"><a href="blog.html" class="tm-nav-link">
+                    <li class="tm-nav-item"><a href="blog.html" class="tm-nav-link">
                         <i class="fas fa-home"></i>
                         Home
                     </a></li>
-                    <li class="tm-nav-item"><a href="projects.html" class="tm-nav-link">
+                    <li class="tm-nav-item active"><a href="projects.html" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
                         Projects
                     </a></li>
@@ -78,11 +78,12 @@ https://templatemo.com/tm-553-xtra-blog
         <main class="tm-main">
             <!-- Search form -->
             <div style="margin-left: auto">
-            <el-input placeholder="Enter Keywords(Powered By Elasticsearch)--Zijun Zhou" v-model="title" @keyup.enter.native="fetchData" style="margin-bottom: 20px;width:45%" >
+            <el-input placeholder="Enter Project Names(Powered By Elasticsearch)--Zijun Zhou" v-model="title" @keyup.enter.native="fetchData" style="margin-bottom: 20px;width:45%" >
                 <el-button @click="fetchData" slot="append" icon="el-icon-search"></el-button>
             </el-input>
-            <el-row>
-                <el-button plain :type="(onlyIfPresent(k))?'success':'info'" v-for="(v,k,i) in aggs" :key="i" @click="handlerFilter(k)"><font style="color: darkgreen">{{k+'('+ v+')'}}</font></el-button>
+            <el-row v-for="(v,k,i) in aggs" :key="i">
+                <div style="display:inline-block; width:100px;margin-bottom: 10px">{{map[k]}}:</div> <el-button @click="handlerFilter(k,item1)" style="display: inline-block" plain :type="(onlyIfPresent(k,item1))?'success':'info'" v-for="(item1,q) in v" :key="q" ><font style="color: darkgreen">{{item1}}</font></el-button>
+<!--                <el-button plain :type="(onlyIfPresent(k))?'success':'info'" v-for="(v,k,i) in aggs" :key="i" @click="handlerFilter(k)"><font style="color: darkgreen">{{k+'('+ v+')'}}</font></el-button>-->
             </el-row>
             <div>
             </div>
@@ -91,25 +92,28 @@ https://templatemo.com/tm-553-xtra-blog
             <div class="row tm-row">
                 <article v-for="(item,i) in items" :key="i" class="col-12 col-md-6 tm-post">
                     <hr class="tm-hr-primary">
-                    <a :href="'post.html?id='+item.id" class="effect-lily tm-post-link tm-pt-60">
+                    <a :href="'project.html?id='+item.id" class="effect-lily tm-post-link tm-pt-60">
                         <div class="tm-post-link-inner">
-                            <img :src="item.image_uri" alt="Image" class="img-fluid">
+                            <img :src="item.image" alt="Image" class="img-fluid">
                         </div>
                         <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{item.title}}</h2>
+                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{item.name}}</h2>
                     </a>                    
                     <p class="tm-pt-30">
-                       {{item.content_short}}
+                       Main Framework: {{item.salepoint}}
                     </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">{{item.specs.category.join(", ")}}</span>
-                        <span class="tm-color-primary">{{huajun.formatDate(Number(item.display_time+''))}}</span>
-                    </div>
+<!--                    <div class="d-flex justify-content-between tm-pt-45">-->
+<!--                        <span class="tm-color-primary">Designed and Implemented All By Zijun Zhou</span>-->
+<!--                        <span class="tm-color-primary">{{huajun.formatDate(Number(item.display_time+''))}}</span>-->
+<!--                    </div>-->
                     <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>{{item.commentstatus?'36 comments':'Comment Options Disabled'}}</span>
-                        <span>by {{item.author}}</span>
-                    </div>
+<!--                    <div class="d-flex justify-content-between">-->
+<!--                        <span>{{item.commentstatus?'36 comments':'Comment Options Disabled'}}</span>-->
+<!--                        <span>by {{item.author}}</span>-->
+<!--                    </div>-->
+                    <p class="tm-pt-30">
+                    Designed and Implemented All By Zijun Zhou
+                    </p>
                 </article>
 <!--                <article class="col-12 col-md-6 tm-post">-->
 <!--                    <hr class="tm-hr-primary">-->
@@ -256,21 +260,29 @@ https://templatemo.com/tm-553-xtra-blog
             </footer>
         </main>
     </div>
-    <script src="js/article.js"></script>
+    <script src="js/project.js"></script>
     <script type="text/javascript">
+        const map={
+            '持久层':'persistency',
+            '前端':'front-end',
+            '框架':'framework'
+        }
         const app=new Vue({
             el:'#app',
             data:{
                 name:'test',
-                Article,
+                Project,
                 listQuery:{
                     page:1,
                     limit:6,
                     name:'',
                     filter:{
-                        category:[]
+                        '持久层':[],
+                        '前端':[],
+                        '框架':[]
                     }
                 },
+                map,
                 items:[],
                 totalPages:0,
                 total:0,
@@ -280,6 +292,8 @@ https://templatemo.com/tm-553-xtra-blog
                 aggs:{}
             },
             created(){
+                let obj=huajun.parse(location.search.substring(1))
+                this.title=obj['name'];
              this.fetchData();
             },
             methods:{
@@ -289,33 +303,46 @@ https://templatemo.com/tm-553-xtra-blog
                 fetchData(){
                     const listQuery=JSON.parse(JSON.stringify(this.listQuery));
                     listQuery['name']=this.title;
-                    listQuery['filter'].category=this.listQuery.filter.category.join(",");
+                    // listQuery['filter'].category=this.listQuery.filter.category.join(",");
                     this.show=true;
-                    Article.fetchArticle(listQuery)
-                        .then(({data:{items,totalPages,total,aggs}})=>{
+                    Project.fetchProjects(listQuery)
+                        .then(({data:{items,totalPages,total,aggs,specs}})=>{
                             this.totalPages=totalPages;
                             this.items=items;
                             this.total=total;
                             this.show=false;
-                            this.aggs=aggs;
+                            this.aggs=specs;
                         })
                 },
-                handlerFilter(category){
-                    if(this.onlyIfPresent(category)){
-                        const listQuery=Object.assign({},this.listQuery);
-                        listQuery.filter.category=listQuery.filter.category.filter(item=>{
-                            return !(item===category);
+                handlerFilter(k,v){
+                    if(this.onlyIfPresent(k,v)){
+                        const listQuery=JSON.parse(JSON.stringify(this.listQuery));
+                        Object.keys(listQuery.filter).forEach((key)=>{
+                           let value=listQuery.filter[key];
+                            if(key===k){
+                                listQuery.filter[key]=value.filter(fk=>{
+                                    return fk!==v;
+                                })
+                            }
                         })
                         this.listQuery=listQuery;
                     }else{
-                        this.listQuery.filter.category.push(category);
+                        this.listQuery.filter[k].push(v);
                     }
                 },
                 //返回filter中是否有此元素
-                onlyIfPresent(category){
-                    return this.listQuery['filter'].category.find(item=>{
-                        return item===category;
-                    })!==undefined;
+                onlyIfPresent(k,v){
+                    let flag=false;
+                    Object.keys(this.listQuery.filter).forEach((key)=> {
+                        if (key === k) {
+                            this.listQuery.filter[key].forEach(v1 => {
+                                if (v1 === v) {
+                                    flag=true;
+                                }
+                            })
+                        }
+                    } );
+                    return flag;
                 }
             },
             watch:{

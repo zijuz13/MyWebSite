@@ -1,6 +1,6 @@
 const Article={
-    url:'http://localhost:10010/api/blog/blog',
-    searchUrl:'http://localhost:10010/api/search/blogs/all',
+    url:'http://101.132.194.179:10010/api/blog/blog',
+    searchUrl:'http://101.132.194.179:10010/api/search/blogs/all',
     fetchArticle(data){
         // data.status='published'
        return axios.post(this.searchUrl,
