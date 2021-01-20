@@ -1,6 +1,6 @@
 const Project={
-    url:'http://101.132.194.179:10010/api/item/projects',
-    searchUrl:'http://101.132.194.179:10010/api/search/projects/all',
+    url:'https://www.huajun123.com/api/item/projects',
+    searchUrl:'https://www.huajun123.com/api/search/projects/all',
     fetchProjects(data){
         // data.status='published'
         return axios.post(this.searchUrl,
