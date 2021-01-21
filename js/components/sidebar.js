@@ -19,7 +19,7 @@ const sidebar={
                         <i class="fas fa-pen"></i>
                        Projects
                     </a></li>
-            <li class="tm-nav-item" :class="{active:ifActive('manage')}"><a href="projects.html" class="tm-nav-link">
+            <li class="tm-nav-item" :class="{active:ifActive('manage')}"><a href="https://www.huajun.link/manage/index.html" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
                         Manage
                         </a></li>
