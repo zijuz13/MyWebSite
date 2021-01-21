@@ -149,8 +149,8 @@ https://templatemo.com/tm-553-xtra-blog
         </main>
     </div>
     </div>
-    <script src="js/article.js"></script>
-    <script src="js/components/sidebar.js"></script>
+	<script src="js/components/sidebar.js"></script>
+	<script src="js/article.js"></script>
     <script type="text/javascript">
         const app=new Vue({
             el:'#app',
@@ -176,7 +176,8 @@ https://templatemo.com/tm-553-xtra-blog
                    return huajun.formatDate(Number(this.article.display_time+''));
                },
                 categoryStr(){
-                   return this.article.category.split(",").join(" . ");
+	           let newArray=this.article.category.split(",");
+                   return 1<newArray.length?newArray.join("."):newArray[0];
                 }
             }
         })
