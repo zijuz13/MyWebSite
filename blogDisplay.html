@@ -90,7 +90,7 @@ https://templatemo.com/tm-553-xtra-blog
             },
             created(){
              let obj=huajun.parse(location.search.substring(1))
-                Article.fetchProjectById(obj['id']).then(({data})=>{
+                Article.fetchArticleById(obj['id']).then(({data})=>{
                     this.article=data;
                 })
             },
