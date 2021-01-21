@@ -236,6 +236,10 @@ https://templatemo.com/tm-553-xtra-blog
                 aggs:{}
             },
             created(){
+                let obj=huajun.parse(location.search.substring(1))
+                if(obj&&obj.name&&''!==obj.name){
+                    this.title=obj['name'];
+                }
              this.fetchData();
             },
             methods:{
