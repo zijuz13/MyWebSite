@@ -39,22 +39,22 @@ https://templatemo.com/tm-553-xtra-blog
                     </form>
                 </div>                
             </div>            
-            <div class="row tm-row">
-                <div class="col-12">
-                    <hr class="tm-hr-primary tm-mb-55">
-                    <!-- Video player 1422x800 -->
-                    <video width="954" height="535" controls class="tm-mb-40">
-                        <source src="video/wheat-field.mp4" type="video/mp4">							  
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
+<!--            <div class="row tm-row">-->
+<!--                <div class="col-12">-->
+<!--                    <hr class="tm-hr-primary tm-mb-55">-->
+<!--                    &lt;!&ndash; Video player 1422x800 &ndash;&gt;-->
+<!--                    <video width="954" height="535" controls class="tm-mb-40">-->
+<!--                        <source src="video/wheat-field.mp4" type="video/mp4">							  -->
+<!--                        Your browser does not support the video tag.-->
+<!--                    </video>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="row tm-row">
                 <div class="col-lg-8 tm-post-col">
                     <div class="tm-post-full">                    
                         <div class="mb-4">
-                            <h2 class="pt-2 tm-color-primary tm-post-title">Single Post of Xtra Blog HTML Template</h2>
-                            <p class="tm-mb-40">June 16, 2020 posted by Admin Nat</p>
+                            <h2 class="pt-2 tm-color-primary tm-post-title">{{article.title}}</h2>
+                            <p class="tm-mb-40">{{formatDate}} posted by {{article.author}}</p>
 <!--                            <p>-->
 <!--                                This is a description of the video post. You can also have an image instead of-->
 <!--                                the video. You can free download -->
@@ -71,7 +71,7 @@ https://templatemo.com/tm-553-xtra-blog
 <!--                                et vitae dui.-->
 <!--                            </p>-->
                             <span v-html="article.content"></span>
-                            <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>
+                            <span class="d-block text-right tm-color-primary">{{categoryStr}}</span>
                         </div>
                         
                         <!-- Comments -->
@@ -197,6 +197,14 @@ https://templatemo.com/tm-553-xtra-blog
                     this.article=data;
                     console.log(this.article)
                 })
+            },
+            computed:{
+               formatDate(){
+                   return huajun.formatDate(Number(article.display_time+''));
+               },
+                categoryStr(){
+                   return article.category.split(",").join(" . ");
+                }
             }
         })
         </script>
