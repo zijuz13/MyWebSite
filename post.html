@@ -195,15 +195,14 @@ https://templatemo.com/tm-553-xtra-blog
              let obj=huajun.parse(location.search.substring(1))
                 Article.fetchArticleById(obj['id']).then(({data})=>{
                     this.article=data;
-                    console.log(this.article)
                 })
             },
             computed:{
                formatDate(){
-                   return huajun.formatDate(Number(article.display_time+''));
+                   return huajun.formatDate(Number(this.article.display_time+''));
                },
                 categoryStr(){
-                   return article.category.split(",").join(" . ");
+                   return this.article.category.split(",").join(" . ");
                 }
             }
         })
