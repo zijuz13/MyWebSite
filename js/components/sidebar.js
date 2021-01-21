@@ -7,17 +7,17 @@ const sidebar={
             </button>
             <div class="tm-site-header">
                 <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
-                <h1 class="text-center">Welcome to Zijun Zhou's Blogs</h1>
+                <h1 class="text-center">Welcome to Zijun Zhou's Personal Website</h1>
             </div>
             <nav class="tm-nav" id="tm-nav">            
                 <ul>
                     <li class="tm-nav-item" :class="{active:ifActive('home')}"><a href="index.html" class="tm-nav-link">
                         <i class="fas fa-home"></i>
-                        Home
+                       {{name==='blogs'?'All Blogs':'Home'}}
                     </a></li>
                     <li class="tm-nav-item" :class="{active:ifActive('projects')}"><a href="projects.html" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
-                        Projects
+                       Projects
                     </a></li>
             <li class="tm-nav-item" :class="{active:ifActive('manage')}"><a href="projects.html" class="tm-nav-link">
                         <i class="fas fa-pen"></i>
@@ -30,6 +30,10 @@ const sidebar={
                     <li class="tm-nav-item" :class="{active:ifActive('contact')}"><a href="contact.html" class="tm-nav-link">
                         <i class="far fa-comments"></i>
                         Contact Me
+                    </a></li>
+                    <li class="tm-nav-item" :class="{active:ifActive('visitor')}"><a href="web.html" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Visitor Statistics
                     </a></li>
                 </ul>
             </nav>
