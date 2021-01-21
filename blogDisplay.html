@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blog Content</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
+<!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/common.js"></script>
+    <!--    Element-UI framework-->
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.14.1/lib/index.js"></script>
+</head>
+<body>
+    <div id="app">
+	<sidebar name="blogs"></sidebar>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" action="index.html" class="form-inline tm-mb-80 tm-search-form">
+                        <input class="form-control tm-search-input" name="name" type="text" placeholder="Search Blogs" aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>                
+            </div>            
+            <div class="row tm-row">
+                <div class="col-12" style="text-align: center;align-items: center;justify-content: center">
+                    <hr class="tm-hr-primary tm-mb-55">
+                    <!-- Video player 1422x800 -->
+                      <img :src="article.image_uri">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <div v-if="null!=article&&undefined!=article&&''!==article.title">
+                            <h2 class="pt-2 tm-color-primary tm-post-title">{{article.title}}</h2>
+                            <p class="tm-mb-40">{{formatDate}} posted by {{article.author}}</p>
+                            <span v-html="article.content"></span>
+                            <span class="d-block text-right tm-color-primary">{{categoryStr}}</span>
+                        </div>
+                        <div v-else>
+                            <h2 class="pt-2 tm-color-primary tm-post-title" style="margin-top:0px;margin-bottom: 500px">The database does not have the relevant blog item to the specified id</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="row tm-row">
+                <hr class="col-12">
+                <div class="col-md-6 col-12 tm-color-gray">
+                    Design: <a rel="nofollow" target="_parent" href="https://templatemo.com" class="tm-external-link">Zijun Zhou(周子骏)</a>
+                </div>
+                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
+                    Powered By RabbitMQ, Vue.js, Element UI, Webpack, Vue-cli, SpringBoot, MySQL, Redis, Elasticsearch, Quartz, WebDriver, Docker in CentOS, Spring Cloud, etc.
+                </div>
+            </footer>
+        </main>
+    </div>
+    </div>
+    <script src="js/components/sidebar.js"></script>
+    <script src="js/article.js"></script>
+    <script type="text/javascript">
+        const app=new Vue({
+            el:'#app',
+            data:{
+                Article,
+                huajun,
+                article:{
+                title:''
+                }
+            },
+            components:{
+              sidebar  
+            },
+            created(){
+             let obj=huajun.parse(location.search.substring(1))
+                Article.fetchProjectById(obj['id']).then(({data})=>{
+                    this.article=data;
+                })
+            },
+            computed: {
+                formatDate() {
+                    return huajun.formatDate(Number(this.article.display_time + ''));
+                },
+                categoryStr(){
+                    let newArray=JSON.parse(this.article.category);
+                    return newArray.join(" . ");
+                }
+            }
+        })
+        </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+</body>
+</html>
