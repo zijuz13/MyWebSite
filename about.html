@@ -9,9 +9,15 @@ Author URL: http://w3layouts.com
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link href="./css/vuetify.min.css" rel="stylesheet">
+    <!--    引入vue2.0框架-->
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="js/components/navibar.js"></script>
   <title>欢迎来到我的主页</title>
-
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 
@@ -21,37 +27,12 @@ Author URL: http://w3layouts.com
 </head>
 
 <body>
+<div id="app">
 <!-- header -->
 <header>
   <div class="w3l-header" id="home">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark pl-0 pr-0">
-            <a class="navbar-brand m-0" href="web.html"><span class="fa fa-gamepad"></span> Huajun</a>
-            <!-- if logo is image enable this
-                <a class="navbar-brand" href="#web.html">
-                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                </a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mr-lg-4">
-                        <a class="nav-link pl-0 pr-0" href="web.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item mr-lg-4 active">
-                        <a class="nav-link pl-0 pr-0" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item mr-lg-4">
-                        <a class="nav-link pl-0 pr-0" href="services.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <navibar name="about"></navibar>
     </div>
   </div>
 </header>
@@ -62,17 +43,18 @@ Author URL: http://w3layouts.com
         <div class="row about-content mb-lg-5">
             <div class="col-lg-6 pr-md-5">
                 <div class="image-block">
-                    <img src="assets/images/me.jpg" class="img-fluid myphoto" alt="my photo" />
+                    <img src="assets/images/myimage.jpg" class="img-fluid myphoto" alt="my photo" />
                     <img src="assets/images/cross.png" class="img-fluid pos" alt="dots" />
                 </div>
             </div>
             <div class="col-lg-6 info pl-lg-5 mt-lg-0 mt-5 pt-lg-0 pt-3 align-center">
-                <h4 class="">I’m Johnson smith</h4>
-                <p class="mt-md-4 mt-3 mb-0"> I'm a Passionate designer & developer who loves simplicity in things and crafts beautiful user
-                    interfaces with love.</p>
-                <img src="assets/images/signature.png" class="img-fluid signature mt-4 mb-2" width="300px" alt="my photo" />
-                <p class="m-0 mb-2">Johnson smith</p>
-                <h6>12/05/1995</h6>
+                <h4 class="">I’m Zijun Zhou</h4>
+                <p class="mt-md-4 mt-3 mb-0" > I'm a Passionate designer & developer who loves simplicity in things</p>
+<!--                <img src="assets/images/signature.png" class="img-fluid signature mt-4 mb-2" width="300px" alt="my photo" />-->
+                <div style="margin-top:100px">
+                <p class="m-0 mb-2" >Zijun Zhou</p>
+                </div>
+                <h6>03/19/1997</h6>
             </div>
         </div>
     </div>
@@ -82,26 +64,26 @@ Author URL: http://w3layouts.com
 <section class="w3l-stats py-lg-5 py-4" id="stats">
     <div class="gallery-inner container py-md-5 py-4">
         <div class="row stats-con text-white">
-            <div class="col-sm-3 col-6 stats_info counter_grid">
+            <div class="col-sm-6 col-12 stats_info counter_grid">
                 <span class="fa fa-lightbulb-o"></span>
-                <p class="counter">645</p>
+                <p class="counter">43</p>
                 <h4>Projects Done</h4>
             </div>
-            <div class="col-sm-3 col-6 stats_info counter_grid1">
-                <span class="fa fa-heart"></span>
-                <p class="counter">563</p>
-                <h4>Satisfied Clients</h4>
-            </div>
-            <div class="col-sm-3 col-6 stats_info counter_grid mt-sm-0 mt-5">
+<!--            <div class="col-sm-3 col-6 stats_info counter_grid1">-->
+<!--                <span class="fa fa-heart"></span>-->
+<!--                <p class="counter">563</p>-->
+<!--                <h4>Satisfied Clients</h4>-->
+<!--            </div>-->
+            <div class="col-sm-6 col-12 stats_info counter_grid mt-sm-0 mt-5">
                 <span class="fa fa-magic"></span>
-                <p class="counter">1145</p>
+                <p class="counter">26</p>
                 <h4>Awards</h4>
             </div>
-            <div class="col-sm-3 col-6 stats_info counter_grid2 mt-sm-0 mt-5">
-                <span class="fa fa-smile-o"></span>
-                <p class="counter">1045</p>
-                <h4>Happy Clients</h4>
-            </div>
+<!--            <div class="col-sm-3 col-6 stats_info counter_grid2 mt-sm-0 mt-5">-->
+<!--                <span class="fa fa-smile-o"></span>-->
+<!--                <p class="counter">1045</p>-->
+<!--                <h4>Happy Clients</h4>-->
+<!--            </div>-->
         </div>
     </div>
 </section>
@@ -113,18 +95,12 @@ Author URL: http://w3layouts.com
             <div class="col-lg-7 advantage-grid-info">
                 <div class="advantage_left">
                     <h4>About my profile </h4>
-                    <p class="mb-3">Accomplished web designer & front-end developer with extensive experience
-                        building WordPress driven websites, HTML5, CSS3 and various web scripting technologies,
-                        web standards and project management. Provide a diverse range of services including custom
-                        theme/application/plugin development, SEO/SEM, and branding to an array of clients from a
-                        variety of industries. Enthusiastic web professional motivated by challenging projects and
-                        deadlines.</p>
-                    <p class="mb-0">Nulla pellentesque mi non laoreet eleifend. Integer sed porttitor mollisar
-                        lorem, at molestie arcust pulvinar ut. Proina fermentum est. Cras mist ipsum, consectetur
-                        ipsum in, egestas tellus ipsu vestibulum tellus accumsan nec tristique justo.
+                    <p class="mb-3">I mainly focus on the development of applications based on Java, Vue.js, Wechat and Harmony Apps. I am keen on Data Structures and Algorithms, which makes my application more efficient. More importantly, I have studied the underlying principles of major Java and Js frameworks during my full-time working in Huawei and Evergrande. And I think what I have learned from these frameworks would be useful for those who also wants to study Java and Js further, so I constructed the Full Stack project to post my notions about these frameworks.(Zijun Zhou Dec 9th, 2020)</p>
+                    <p class="mb-0">
+                        我主要专注于Java,Vue.js,微信小程序和鸿蒙小程序的开发，
+                        我对数据结构与算法有独特的造诣，并且喜欢钻研源代码，并且热衷于学习新的技术，并用于自己的项目中
                     </p>
-                    <a href="resume.html" class="btn-style btn-primary btn mt-lg-5 mt-4">Download CV</a>
-                    <a href="contact.html" class="btn-style btn-secondary btn mt-lg-5 mt-4 ml-1">Hire Me</a>
+                    <a href="assets/images/CV.pdf" class="btn-style btn-primary btn mt-lg-5 mt-4">Download CV</a>
                 </div>
             </div>
             <div class="col-lg-5 advantage-grid-info1">
@@ -143,12 +119,12 @@ Author URL: http://w3layouts.com
             <div class="row skills">
                 <div class="col-lg-6 bar-grids bargrids-left">
                     <h4> My Skills </h4>
-                    <h6>web design <span> 80% </span></h6>
+                    <h6>Multi-threaded Programming <span> 90% </span></h6>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-striped active editContent" style="width: 80%">
+                        <div class="progress-bar progress-bar-striped active editContent" style="width: 90%">
                         </div>
                     </div>
-                    <h6>ui design & developer <span> 70% </span></h6>
+                    <h6>Web Design <span> 70% </span></h6>
                     <div class="progress  w3-bar-grids">
                         <div class="progress-bar progress-bar-striped active" style="width: 70%">
                         </div>
@@ -158,9 +134,9 @@ Author URL: http://w3layouts.com
                         <div class="progress-bar progress-bar-striped active" style="width: 90%">
                         </div>
                     </div>
-                    <h6>Photoshop <span> 75% </span></h6>
+                    <h6>Java EE <span> 90% </span></h6>
                     <div class="progress  w3-bar-grids prgs-w3-last">
-                        <div class="progress-bar progress-bar-striped active" style="width: 75%">
+                        <div class="progress-bar progress-bar-striped active" style="width: 90%">
                         </div>
                     </div>
                 </div>
@@ -211,35 +187,13 @@ Author URL: http://w3layouts.com
 </div>
 <!-- //skills and hobbies -->
 <!-- Footer -->
-<footer>
-  <section class="w3l-footers-1">
-    <div class="footer py-3">
-      <div class="container">
-        <div class="footer-content">
-          <div class="row">
-            <div class="col-lg-8 footer-left">
-              <p class="m-0">&copy; 2020 Eccentric Portfolio. All Rights Reserved | Design by <a href="https://w3layouts.com">W3layouts</a></p>
-            </div>
-            <div class="col-lg-4 footer-right text-lg-right text-center mt-lg-0 mt-3">
-              <ul class="social m-0 p-0">
-                <li><a href="#facebook"><span class="fa fa-facebook"></span></a></li>
-                <li><a href="#linkedin"><span class="fa fa-linkedin"></span></a></li>
-                <li><a href="#instagram"><span class="fa fa-instagram"></span></a></li>
-                <li><a href="#twitter"><span class="fa fa-twitter"></span></a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</footer>
 <!-- //Footer -->
 
 <!-- move top -->
 <button onclick="topFunction()" id="movetop" class="editContent" title="Go to top">
   <span class="fa fa-angle-up"></span>
 </button>
+</div>
 <script>
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () {
@@ -303,7 +257,17 @@ Author URL: http://w3layouts.com
 </script>
 <!-- //for blog carousel slider -->
 
-
+<script type="text/javascript">
+    const app=new Vue({
+        el:'#app',
+        data:{
+            fucker:'hujkc123'
+        },
+        components:{
+            navibar
+        }
+    })
+</script>
 <!-- stats number counter-->
 <script src="assets/js/jquery.waypoints.min.js"></script>
 <script src="assets/js/jquery.countup.js"></script>

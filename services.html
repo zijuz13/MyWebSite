@@ -27,36 +27,37 @@
 <header>
   <div class="w3l-header" id="home">
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark pl-0 pr-0">
-        <a class="navbar-brand m-0" href="web.html"><span class="fa fa-gamepad"></span> Huajun </a>
-        <!-- if logo is image enable this   
-            <a class="navbar-brand" href="#web.html">
-                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-            </a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon fa fa-bars"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mr-lg-4">
-              <a class="nav-link pl-0 pr-0" href="web.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item mr-lg-4">
-              <a class="nav-link pl-0 pr-0" href="about.html">About me</a>
-            </li>
-            <li class="nav-item active mr-lg-4">
-              <a class="nav-link pl-0 pr-0" href="services.html">Services</a>
-            </li>
-              <li class="nav-item mr-lg-4">
-                  <a class="nav-link pl-0 pr-0" href="electionnews.html">Election News</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+<!--      <nav class="navbar navbar-expand-lg navbar-dark pl-0 pr-0">-->
+<!--        <a class="navbar-brand m-0" href="web.html"><span class="fa fa-gamepad"></span> Huajun </a>-->
+<!--        &lt;!&ndash; if logo is image enable this   -->
+<!--            <a class="navbar-brand" href="#web.html">-->
+<!--                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />-->
+<!--            </a> &ndash;&gt;-->
+<!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"-->
+<!--          aria-label="Toggle navigation">-->
+<!--          <span class="navbar-toggler-icon fa fa-bars"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--          <ul class="navbar-nav ml-auto">-->
+<!--            <li class="nav-item mr-lg-4">-->
+<!--              <a class="nav-link pl-0 pr-0" href="web.html">Home <span class="sr-only">(current)</span></a>-->
+<!--            </li>-->
+<!--            <li class="nav-item mr-lg-4">-->
+<!--              <a class="nav-link pl-0 pr-0" href="about.html">About me</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item active mr-lg-4">-->
+<!--              <a class="nav-link pl-0 pr-0" href="services.html">Services</a>-->
+<!--            </li>-->
+<!--              <li class="nav-item mr-lg-4">-->
+<!--                  <a class="nav-link pl-0 pr-0" href="electionnews.html">Election News</a>-->
+<!--              </li>-->
+<!--            <li class="nav-item">-->
+<!--              <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </nav>-->
+        <navibar name="work"></navibar>
     </div>
   </div>
 </header>
@@ -136,30 +137,30 @@
 <!-- //services block1 -->
 
 <!-- services block 2 -->
-<div class="w3l-services-block py-5" id="classes">
-    <div style="text-align: center">
-    <el-input v-model="searchname" @keypress.native.enter="searchData" placeholder="Powered By Elasticsearch" style="width: 300px"></el-input>
-        <el-button type="success" @click="searchData" plain>搜索</el-button>
-    </div>
-    <div class="container py-lg-5 py-md-3">
-        <div class="services-block_grids_bottom">
-            <div class="row" v-loading="loading">
-                <div @click="displayVideo(item)" v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">
-                    <div class="service_grid_btm_left1">
-                        <div class="service_grid_btm_left2">
-                            <span style="margin-top: 20px" class="fa fa-desktop editContent" aria-hidden="true"></span>
-                            <h5>{{item.name}}</h5>
-                            <img :src="item.image" style="margin-bottom: 20px" alt=" " class="img-fluid" />
-                            <div v-for="(d,index) in item.description" :key="index" style="text-align: justify">
-                                <h8 style="font-weight: bold">{{(index+1)+'.'}}</h8>{{d}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--<div class="w3l-services-block py-5" id="classes">-->
+<!--    <div style="text-align: center">-->
+<!--    <el-input v-model="searchname" @keypress.native.enter="searchData" placeholder="Powered By Elasticsearch" style="width: 300px"></el-input>-->
+<!--        <el-button type="success" @click="searchData" plain>搜索</el-button>-->
+<!--    </div>-->
+<!--    <div class="container py-lg-5 py-md-3">-->
+<!--        <div class="services-block_grids_bottom">-->
+<!--            <div class="row" v-loading="loading">-->
+<!--                <div @click="displayVideo(item)" v-for="(item,i) in items" :key="i" class="col-lg-4 col-md-6 service_grid_btm_left" :style="2>=i?'':'margin-top: 130px'">-->
+<!--                    <div class="service_grid_btm_left1">-->
+<!--                        <div class="service_grid_btm_left2">-->
+<!--                            <span style="margin-top: 20px" class="fa fa-desktop editContent" aria-hidden="true"></span>-->
+<!--                            <h5>{{item.name}}</h5>-->
+<!--                            <img :src="item.image" style="margin-bottom: 20px" alt=" " class="img-fluid" />-->
+<!--                            <div v-for="(d,index) in item.description" :key="index" style="text-align: justify">-->
+<!--                                <h8 style="font-weight: bold">{{(index+1)+'.'}}</h8>{{d}}-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!-- // services block2 -->
 
 <!-- services block3 -->
@@ -391,6 +392,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/6.6.2/video.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue-video-player@5.0.0/dist/vue-video-player.js"></script>
 <script src="js/components/videocomponent.js"></script>
+<script src="js/components/navibar.js"></script>
 <script type="text/javascript">
 const app=new Vue({
     el:'#app',
@@ -411,7 +413,8 @@ const app=new Vue({
 this.getDataFromServer();
     },
     components:{
-        fucker:fucke
+        fucker:fucke,
+        navibar
     },
     computed:{
 
