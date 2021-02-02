@@ -51,10 +51,13 @@ const sidebar={
                     <i class="fab fa-linkedin tm-social-icon"></i>
                 </a>
             </div>
-            <p class="tm-mb-80 pr-5 text-white">
+            <p align="center" class="tm-mb-80 pr-5 text-white">
             The whole project is constructed by Zijun Zhou. The front-end pages use some components from Element-UI.For more information about me, please press the 'About Me'
-    button! Thank you in advance for considering my application! Github:Github:github.com/zijuz13.
+    button! Thank you in advance for considering my application!  
             </p>
+             <p align="center" class="tm-mb-80 pr-5 text-white"><div style="display: block">Github:&nbsp;&nbsp;<a href="https://github.com/zijuz13">github.com/zijuz13</a></div>Note: Not all the source code of my projects
+     has been committed to this Github account.And some extra functions of my website are coming soon.</p>
+        </div>
         </div>
     </header>
     `,

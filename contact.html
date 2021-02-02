@@ -17,41 +17,20 @@ Author URL: http://w3layouts.com
 
   <!-- Template CSS -->
   <link rel="stylesheet" href="assets/css/style-starter.css">
-
+    <script src="./js/vue/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script src="./js/common.js"></script>
+    <!--    Element-UI framework-->
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@2.14.1/lib/index.js"></script>
 </head>
 
 <body>
-<!-- header -->
+<div id="app"><!-- header -->
 <header>
   <div class="w3l-header" id="home">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark pl-0 pr-0">
-            <a class="navbar-brand m-0" href="web.html"><span class="fa fa-gamepad"></span> Huajun</a>
-            <!-- if logo is image enable this
-                <a class="navbar-brand" href="#web.html">
-                    <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-                </a> -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon fa fa-bars"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mr-lg-4">
-                        <a class="nav-link pl-0 pr-0" href="web.html">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item mr-lg-4">
-                        <a class="nav-link pl-0 pr-0" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item mr-lg-4">
-                        <a class="nav-link pl-0 pr-0" href="services.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-0 pr-0 active" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <navibar name="contact"></navibar>
     </div>
   </div>
 </header>
@@ -113,6 +92,7 @@ Author URL: http://w3layouts.com
 <button onclick="topFunction()" id="movetop" class="editContent" title="Go to top">
   <span class="fa fa-angle-up"></span>
 </button>
+</div>
 <script>
   // When the user scrolls down 20px from the top of the document, show the button
   window.onscroll = function () {
@@ -175,8 +155,18 @@ Author URL: http://w3layouts.com
   })
 </script>
 <!-- //for blog carousel slider -->
-
-
+<script src="js/components/navibar.js"></script>
+<script type="text/javascript">
+    const app=new Vue({
+        el:'#app',
+        data:{
+            fucker:'hujkc123'
+        },
+        components:{
+            navibar
+        }
+    })
+</script>
 <!-- stats number counter-->
 <script src="assets/js/jquery.waypoints.min.js"></script>
 <script src="assets/js/jquery.countup.js"></script>
