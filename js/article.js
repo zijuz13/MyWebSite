@@ -1,4 +1,6 @@
 const Article={
+    isTrigger:false,
+    url1:'https://www.huajun123.com/api/item/notification',
     url:'https://www.huajun123.com/api/item/blog',
     searchUrl:'https://www.huajun123.com/api/search/blogs/all',
     fetchArticle(data){
@@ -9,5 +11,8 @@ const Article={
     },
     fetchArticleById(id){
         return axios.get(this.url+"/"+id);
+    },
+    getNotification(){
+        return axios.get(this.url1)
     }
 }

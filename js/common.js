@@ -536,6 +536,12 @@ const huajun= ly = {
      */
     http: axios,
     store: {
+        setVal(key,value) {
+          localStorage.setItem(key,value);
+        },
+        getVal(key){
+          return localStorage.getItem(key);
+        },
         set(key, value) {
             localStorage.setItem(key, JSON.stringify(value));
         },
