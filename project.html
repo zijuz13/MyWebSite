@@ -3,18 +3,19 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Xtra Blog</title>
+	<title>Project Display</title>
 	<link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
 	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/templatemo-xtra-blog.css" rel="stylesheet">
 <!--
-    
+
 TemplateMo 553 Xtra Blog
 
 https://templatemo.com/tm-553-xtra-blog
 
 -->
+    <link rel="icon" type="image/x-icon" href="img/huajun.ico" />
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <script src="./js/vue/vue.js"></script>
     <script src="./js/axios.min.js"></script>
@@ -36,8 +37,8 @@ https://templatemo.com/tm-553-xtra-blog
                         <button class="tm-search-button" type="submit">
                             <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
                         </button>
-                </div>                
-            </div>            
+                </div>
+            </div>
             <div class="row tm-row">
                 <div class="col-12" style="text-align: center;align-items: center;justify-content: center">
                     <hr class="tm-hr-primary tm-mb-55">
@@ -73,7 +74,7 @@ https://templatemo.com/tm-553-xtra-blog
 <!--                            <span v-html="article.content"></span>-->
 <!--                            <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>-->
                         </div>
-                        
+
 <!--                         Comments-->
 <!--                        <div>-->
 <!--                            <h2 class="tm-color-primary tm-post-title">Comments</h2>-->
@@ -191,7 +192,7 @@ https://templatemo.com/tm-553-xtra-blog
                 description:[]
             },
             components:{
-              sidebar  
+              sidebar
             },
             created(){
              let obj=huajun.parse(location.search.substring(1))

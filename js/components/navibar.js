@@ -21,7 +21,10 @@ const navibar={
             <li class="nav-item mr-lg-4" :class="{active:ifActive('work')}">
               <a class="nav-link pl-0 pr-0" href="services.html">Work Experience</a>
             </li>
-            <li class="nav-item" :class="{active:ifActive('contact')}">
+             <li class="nav-item mr-lg-4">
+              <a class="nav-link pl-0 pr-0" href="/index.html">Blogs&Projects</a>
+            </li>
+            <li class="nav-item mr-lg-4" :class="{active:ifActive('contact')}">
               <a class="nav-link pl-0 pr-0" href="contact.html">Contact</a>
             </li>
           </ul>
