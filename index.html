@@ -250,6 +250,8 @@ https://templatemo.com/tm-553-xtra-blog
                 notification:{}
             },
             created(){
+		    let ip=huajun.store.getVal("ip");
+		    console.log(ip);
                 this.getNotification()
                 let obj=huajun.parse(location.search.substring(1))
                 if(obj&&obj.name&&''!==obj.name){
