@@ -231,7 +231,7 @@ https://templatemo.com/tm-553-xtra-blog
             data:{
                 name:'test',
                 Article,
-                dialogVisible:true,
+                dialogVisible:false,
                 listQuery:{
                     page:1,
                     limit:6,
@@ -260,13 +260,11 @@ https://templatemo.com/tm-553-xtra-blog
             methods:{
                 getNotification() {
                  Article.getNotification().then(({data})=>{
-                     console.log(data)
-                     if(data.hide){
-                         this.dialogVisible=false;
-                         return;
+                     if(!data.hide){
+                         this.dialogVisible=true;
+                         data.content=data.content.split("\\")
+                         this.notification=data;
                      }
-                     data.content=data.content.split("\\")
-                     this.notification=data;
                  })
                 },
                 formatDate(data){
