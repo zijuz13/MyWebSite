@@ -129,10 +129,11 @@
                 notification:{}
             },
             created(){
-                this.getNotification()
                 let obj=huajun.parse(location.search.substring(1))
                 if(obj&&obj.name&&''!==obj.name){
                     this.title=obj['name'];
+                }else {
+                    this.getNotification()
                 }
              this.fetchData();
             },
