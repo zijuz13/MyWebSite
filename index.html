@@ -127,8 +127,6 @@
                 notification:{}
             },
             created(){
-		    let ip=huajun.store.getVal("Ip");
-		    console.log(ip);
                 this.getNotification()
                 let obj=huajun.parse(location.search.substring(1))
                 if(obj&&obj.name&&''!==obj.name){
