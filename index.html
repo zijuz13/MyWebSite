@@ -33,7 +33,7 @@
                 <el-dialog
                         title="Notification"
                         :visible.sync="dialogVisible"
-                        width="30%"
+                        width="38%"
                         >
                     <p style="font-size:30px" v-for="(item,i) in notification.content" :key="i">{{'- '+item}}</p>
                     <span slot="footer" class="dialog-footer">
@@ -108,7 +108,7 @@
             data:{
                 name:'test',
                 Article,
-                dialogVisible:true,
+                dialogVisible:false,
                 listQuery:{
                     page:1,
                     limit:6,
@@ -127,6 +127,8 @@
                 notification:{}
             },
             created(){
+		    let ip=huajun.store.getVal("Ip");
+		    console.log(ip);
                 this.getNotification()
                 let obj=huajun.parse(location.search.substring(1))
                 if(obj&&obj.name&&''!==obj.name){
@@ -137,13 +139,11 @@
             methods:{
                 getNotification() {
                  Article.getNotification().then(({data})=>{
-                     console.log(data)
-                     if(data.hide){
-                         this.dialogVisible=false;
-                         return;
+                     if(!data.hide){
+                         this.dialogVisible=true;
+                         data.content=data.content.split("\\")
+                         this.notification=data;
                      }
-                     data.content=data.content.split("\\")
-                     this.notification=data;
                  })
                 },
                 formatDate(data){
